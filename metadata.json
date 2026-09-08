@@ -1,0 +1,7 @@
+{
+  "name": "NTU FindAI - University Lost & Found GenAI System",
+  "description": "NTU FindAI: A Generative AI system for university lost-and-found matching and private ownership verification with lightweight RAG and multi-variant evaluation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
