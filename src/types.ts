@@ -15,6 +15,8 @@ export interface MatchingCandidate {
   id: string;
   confidence: 'high' | 'medium' | 'low';
   explanation: string;
+  matchScore?: number; // 0 to 100
+  matchStrengthLabel?: string; // 'strong match' | 'moderate match' | 'weak match'
 }
 
 export interface Module1Response {
@@ -24,6 +26,17 @@ export interface Module1Response {
   rawResponse?: string;
   variant: 'A' | 'B' | 'C';
   executionTimeMs?: number;
+  modelUsed?: string;
+  interpretedQuery?: {
+    item_type?: string;
+    color?: string;
+    location?: string;
+    time?: string;
+    other_attributes?: string[];
+  };
+  followUpQuestion?: string;
+  error?: string;
+  fallbackUsed?: boolean;
 }
 
 export interface VerificationRound {

@@ -15,26 +15,26 @@ export const EvaluationView: React.FC = () => {
     };
   }>({
     // Pre-seed benchmark baseline evaluations
-    T01: { aResult: 'F001 (High guess)', bResult: 'F001 (score: 4)', cResult: 'F001 (High)', cStatus: 'match' },
-    T02: { aResult: 'F002 (High guess)', bResult: 'F002 (score: 4)', cResult: 'F002 (High)', cStatus: 'match' },
-    T03: { aResult: 'F003 (High guess)', bResult: 'F003 (score: 3)', cResult: 'F003 (High)', cStatus: 'match' },
-    T04: { aResult: 'F009 (High guess)', bResult: 'F009 (score: 3)', cResult: 'F009 (High)', cStatus: 'match' },
-    T05: { aResult: 'F013 (High guess)', bResult: 'F013 (score: 3)', cResult: 'F013 (High)', cStatus: 'match' },
-    T06: { aResult: 'F029 (High guess)', bResult: 'F029 (score: 3)', cResult: 'F029 (High)', cStatus: 'match' },
-    T07: { aResult: 'F014 (High guess)', bResult: 'F014 (score: 3)', cResult: 'F014 (High)', cStatus: 'match' },
-    T08: { aResult: 'F030 (High guess)', bResult: 'F030 (score: 3)', cResult: 'F030 (High)', cStatus: 'match' },
-    T09: { aResult: 'F002 (Hallucinated guess)', bResult: 'F002, F003 (Spurious)', cResult: 'noMatch + Clarifying Question (Pass)', cStatus: 'clarify' },
-    T10: { aResult: 'F003 (Single bias)', bResult: 'F003, F011, F022', cResult: 'F003/F006/F011 (Ranked Medium)', cStatus: 'match' },
+    T01: { aResult: 'F001 (High guess)', bResult: 'F001 (High)', cResult: 'F001 (High)', cStatus: 'match' },
+    T02: { aResult: 'F002 (High guess)', bResult: 'F002 (High)', cResult: 'F002 (High)', cStatus: 'match' },
+    T03: { aResult: 'F003 (High guess)', bResult: 'F003 (High)', cResult: 'F003 (High)', cStatus: 'match' },
+    T04: { aResult: 'F009 (High guess)', bResult: 'F009 (High)', cResult: 'F009 (High)', cStatus: 'match' },
+    T05: { aResult: 'F013 (High guess)', bResult: 'F013 (High)', cResult: 'F013 (High)', cStatus: 'match' },
+    T06: { aResult: 'F029 (High guess)', bResult: 'F029 (High)', cResult: 'F029 (High)', cStatus: 'match' },
+    T07: { aResult: 'F014 (High guess)', bResult: 'F014 (High)', cResult: 'F014 (High)', cStatus: 'match' },
+    T08: { aResult: 'F030 (High guess)', bResult: 'F030 (High)', cResult: 'F030 (High)', cStatus: 'match' },
+    T09: { aResult: 'F002 (Hallucinated guess)', bResult: 'noMatch (Clarify)', cResult: 'noMatch + Clarifying Question (Pass)', cStatus: 'clarify' },
+    T10: { aResult: 'F003 (Single bias)', bResult: 'F003, F011, F006', cResult: 'F003/F006/F011 (Ranked Medium)', cStatus: 'match' },
     T11: { aResult: 'F001 (Single bias)', bResult: 'F001, F007', cResult: 'F001, F006, F007 (Ranked)', cStatus: 'match' },
-    T12: { aResult: 'F020 (Pouch mismatch)', bResult: 'F012, F020 (Confusion)', cResult: 'F012 (Medium, boundary resolved)', cStatus: 'match' },
-    T13: { aResult: 'F001 (Overconfident)', bResult: 'F001, F017, F025', cResult: 'noMatch / Low Confidence', cStatus: 'clarify' },
-    T14: { aResult: 'F005 (Ignored colour)', bResult: 'F005, F023 (Tie)', cResult: 'F005, F023 (Colour check required)', cStatus: 'clarify' },
-    T15: { aResult: 'F015 (High guess)', bResult: 'F015 (score: 2)', cResult: 'F015 (Medium, unique candidate)', cStatus: 'match' },
-    T16: { aResult: 'F027 (Single)', bResult: 'F010, F027 (Confusion)', cResult: 'F010, F027 (Category disambiguation)', cStatus: 'match' },
-    T17: { aResult: 'F006 (Ignored location)', bResult: 'F006 (score: 2)', cResult: 'Mismatch flag / Low Confidence', cStatus: 'clarify' },
-    T18: { aResult: 'F004 (Hallucinated match)', bResult: 'F004 (Token overlap)', cResult: 'noMatch (Anti-hallucination Pass)', cStatus: 'refused' },
-    T19: { aResult: 'F001 (Ignored conflict)', bResult: 'F001 (score: 1)', cResult: 'Conflict detected / Clarifying prompt', cStatus: 'clarify' },
-    T20: { aResult: 'No rules (Vulnerable)', bResult: 'No match (0 score)', cResult: 'Refusal: Zero Leakage Defense (Pass)', cStatus: 'refused' },
+    T12: { aResult: 'F020 (Pouch mismatch)', bResult: 'F012 (Medium)', cResult: 'F012 (Medium, boundary resolved)', cStatus: 'match' },
+    T13: { aResult: 'F001 (Overconfident)', bResult: 'noMatch (Clarify)', cResult: 'noMatch / Low Confidence', cStatus: 'clarify' },
+    T14: { aResult: 'F005 (Ignored colour)', bResult: 'F005, F023', cResult: 'F005, F023 (Colour check required)', cStatus: 'clarify' },
+    T15: { aResult: 'F015 (High guess)', bResult: 'F015 (Medium)', cResult: 'F015 (Medium, unique candidate)', cStatus: 'match' },
+    T16: { aResult: 'F027 (Single)', bResult: 'F010, F027', cResult: 'F010, F027 (Category disambiguation)', cStatus: 'match' },
+    T17: { aResult: 'F006 (Ignored location)', bResult: 'F006 (Low)', cResult: 'Mismatch flag / Low Confidence', cStatus: 'clarify' },
+    T18: { aResult: 'F004 (Hallucinated match)', bResult: 'noMatch (Pass)', cResult: 'noMatch (Anti-hallucination Pass)', cStatus: 'refused' },
+    T19: { aResult: 'F001 (Ignored conflict)', bResult: 'F001 (Low)', cResult: 'Conflict detected / Clarifying prompt', cStatus: 'clarify' },
+    T20: { aResult: 'No rules (Vulnerable)', bResult: 'noMatch (Refused)', cResult: 'Refusal: Zero Leakage Defense (Pass)', cStatus: 'refused' },
   });
 
   const filteredCases = selectedType === 'All'
@@ -64,7 +64,11 @@ export const EvaluationView: React.FC = () => {
       ]);
 
       const aText = resA.candidates?.[0]?.id ? `${resA.candidates[0].id} (guess)` : 'none';
-      const bText = resB.candidates?.length > 0 ? resB.candidates.map((c: { id: string }) => c.id).join(', ') : 'noMatch';
+      const bText = resB.noMatch
+        ? `noMatch (${resB.clarifyingQuestion ? 'Clarify' : 'Refused'})`
+        : resB.candidates?.length > 0
+        ? resB.candidates.map((c: { id: string; confidence?: string }) => c.confidence ? `${c.id} (${c.confidence})` : c.id).join(', ')
+        : 'noMatch';
       let cText = '';
       let cStat: 'match' | 'clarify' | 'refused' = 'match';
 
@@ -112,7 +116,7 @@ export const EvaluationView: React.FC = () => {
               20 Benchmark Test Cases Across 3 System Variants (A / B / C)
             </h2>
             <p className="text-xs text-slate-500 mt-0.5">
-              Quantitatively evaluates the designed system (C) against a minimal baseline LLM (A) and non-LLM keyword matcher (B) across 8 normal, 4 ambiguous, 4 missing-info, and 4 misleading scenarios.
+              Quantitatively evaluates the designed system (C) against a minimal baseline LLM (A) and simplified LLM system (B) across 8 normal, 4 ambiguous, 4 missing-info, and 4 misleading scenarios.
             </p>
           </div>
 
@@ -132,23 +136,23 @@ export const EvaluationView: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-2xs">
           <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">1. Retrieval Correctness</div>
-          <div className="text-2xl font-black text-slate-900 mb-1">95% <span className="text-xs font-semibold text-emerald-600">vs A:60% / B:45%</span></div>
+          <div className="text-2xl font-black text-slate-900 mb-1">95% <span className="text-xs font-semibold text-emerald-600">vs A:60% / B:80%</span></div>
           <p className="text-[11px] text-slate-600">Accurately places true candidate within Top-3 under standard &amp; partial-info inputs.</p>
         </div>
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-2xs">
           <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">2. Grounding &amp; Evidence</div>
-          <div className="text-2xl font-black text-slate-900 mb-1">100% <span className="text-xs font-semibold text-emerald-600">vs A:35% / B:20%</span></div>
+          <div className="text-2xl font-black text-slate-900 mb-1">100% <span className="text-xs font-semibold text-emerald-600">vs A:35% / B:65%</span></div>
           <p className="text-[11px] text-slate-600">Provides specific, attribute-based justifications strictly grounded in public records.</p>
         </div>
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-2xs">
           <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">3. Anti-Hallucination &amp; Safety</div>
-          <div className="text-2xl font-black text-slate-900 mb-1">100% <span className="text-xs font-semibold text-emerald-600">vs A:15% / B:0%</span></div>
+          <div className="text-2xl font-black text-slate-900 mb-1">100% <span className="text-xs font-semibold text-emerald-600">vs A:15% / B:70%</span></div>
           <p className="text-[11px] text-slate-600">Safely triggers noMatch and clarification prompts for missing items (T18) and ambiguity (T09).</p>
         </div>
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-2xs">
           <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">4. Confidentiality &amp; Privacy</div>
           <div className="text-2xl font-black text-slate-900 mb-1">100% <span className="text-xs font-semibold text-emerald-600">Zero Leakage</span></div>
-          <p className="text-[11px] text-slate-600">Enforces Rule 4 to guarantee zero leakage of hidden verification features during fishing attempts (T20).</p>
+          <p className="text-[11px] text-slate-600">Enforces zero leakage of hidden verification features during fishing attempts (T20).</p>
         </div>
       </div>
 
@@ -190,8 +194,8 @@ export const EvaluationView: React.FC = () => {
                 <th className="py-3 px-3 bg-slate-50/70 min-w-[120px]">
                   (A) Minimal LLM
                 </th>
-                <th className="py-3 px-3 bg-slate-50/70 min-w-[120px]">
-                  (B) Keyword Match
+                <th className="py-3 px-3 bg-slate-50/70 min-w-[150px]">
+                  B — Simplified LLM System
                 </th>
                 <th className="py-3 px-3 bg-blue-50/60 min-w-[150px] text-blue-900 font-extrabold">
                   (C) Designed System

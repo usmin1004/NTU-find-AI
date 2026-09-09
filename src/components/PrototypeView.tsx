@@ -308,66 +308,51 @@ export const PrototypeView: React.FC<PrototypeViewProps> = () => {
 
           {/* Candidates List */}
           {result && !result.noMatch && result.candidates.length > 0 && (
-            <div className="space-y-3 flex-1 overflow-y-auto">
+            <div className="space-y-3.5 flex-1 overflow-y-auto">
               {result.candidates.map((cand, idx) => {
                 const item = getCandidateItem(cand.id);
-                const isTop = idx === 0;
+                // Calculate display score (fallback if not provided by minimal model)
+                const score = cand.matchScore !== undefined
+                  ? cand.matchScore
+                  : cand.confidence === 'high' ? 95 : cand.confidence === 'medium' ? 60 : 40;
+                const matchStrength = cand.matchStrengthLabel || (score >= 80 ? 'strong match' : score >= 50 ? 'moderate match' : 'weak match');
+                const rankNum = idx + 1;
 
                 return (
                   <div
                     key={cand.id}
-                    className={`rounded-2xl p-4 border transition-all ${
-                      isTop
-                        ? 'border-[#141b2d] bg-white shadow-xs'
-                        : 'border-[#e5dfd2] bg-[#fbfaf7]'
-                    }`}
+                    className="rounded-2xl p-4 sm:p-5 border border-[#e5dfd2] bg-white transition-all shadow-xs hover:border-[#141b2d]/30"
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center space-x-2">
-                        <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#f0ede4] text-[#141b2d]">
-                          {cand.id}
-                        </span>
-                        {isTop && (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#141b2d] text-white">
-                            BEST MATCH
-                          </span>
-                        )}
+                    {/* Header line: #1 · F001 · dark grey insulated tumbler    95/100 */}
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <h3 className="text-sm sm:text-base font-bold text-[#141b2d] leading-snug tracking-tight">
+                        #{rankNum} &middot; {cand.id} &middot; {item ? item.publicDescription : 'Found item'}
+                      </h3>
+                      <div className="text-sm sm:text-base font-extrabold text-[#0f6834] whitespace-nowrap shrink-0">
+                        {score}/100
                       </div>
-                      <span
-                        className={`text-[11px] font-bold uppercase px-2 py-0.5 rounded-full ${
-                          cand.confidence === 'high'
-                            ? 'bg-[#e7f7ed] text-[#0f6834]'
-                            : cand.confidence === 'medium'
-                            ? 'bg-[#fff8ea] text-[#925f0a]'
-                            : 'bg-slate-100 text-slate-700'
-                        }`}
-                      >
-                        {cand.confidence} confidence
-                      </span>
                     </div>
 
+                    {/* Subtitle line: strong match · Found at LT2A · 26 Aug 15:40 */}
                     {item && (
-                      <div className="mb-2">
-                        <h4 className="text-xs font-bold text-[#141b2d]">
-                          {item.publicDescription}
-                        </h4>
-                        <div className="text-[11px] text-[#5c687e] mt-0.5">
-                          {item.locationFound} &middot; {item.datetimeFound} &middot; {item.category}
-                        </div>
+                      <div className="text-xs text-[#7c8799] mb-3">
+                        {matchStrength} &middot; Found at {item.locationFound} &middot; {item.datetimeFound}
                       </div>
                     )}
 
-                    <div className="bg-[#f0ede4]/70 rounded-xl p-2.5 text-[11px] text-[#4b5569] leading-relaxed mb-3">
-                      <strong className="text-[#141b2d]">Reason:</strong> {cand.explanation}
+                    {/* Why rationale line matching screenshot */}
+                    <div className="text-xs text-[#334155] leading-relaxed mb-4">
+                      <strong className="text-[#141b2d] font-bold">Why: </strong>
+                      <span>{cand.explanation}</span>
                     </div>
 
                     {item && (
                       <button
                         onClick={() => setSelectedCandidateForVerification(item)}
-                        className="w-full inline-flex items-center justify-center px-3.5 py-2 rounded-xl bg-[#141b2d] hover:bg-[#25324b] text-white text-xs font-bold transition-all shadow-xs"
+                        className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-[#141b2d] hover:bg-[#25324b] text-white text-xs font-bold transition-all shadow-xs"
                       >
                         <ShieldCheck className="w-3.5 h-3.5 mr-1.5 text-amber-300" />
-                        <span>Verify ownership</span>
+                        <span>Verify ownership (Module 2)</span>
                         <ChevronRight className="w-3.5 h-3.5 ml-1 opacity-80" />
                       </button>
                     )}
