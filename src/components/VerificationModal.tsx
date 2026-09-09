@@ -126,30 +126,30 @@ export const VerificationModal: React.FC<VerificationModalProps> = ({ candidate,
   };
 
   return (
-    <div id="verification-modal-overlay" className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div id="verification-modal-dialog" className="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+    <div id="verification-modal-overlay" className="fixed inset-0 z-50 bg-[#141b2d]/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+      <div id="verification-modal-dialog" className="bg-[#f8f6f0] rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-[#e5dfd2] overflow-hidden">
         {/* Header */}
-        <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/80 flex items-center justify-between">
+        <div className="px-6 py-4 border-b border-[#ded7c8] bg-white flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-xs">
-              <ShieldCheck className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-[#141b2d] text-white flex items-center justify-center shadow-xs">
+              <ShieldCheck className="w-5 h-5 text-amber-300" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <h3 className="text-base font-bold text-slate-900">Module 2: Ownership Verification</h3>
-                <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-100 text-indigo-800">
+                <h3 className="text-base font-bold text-[#141b2d]">Module 2: Ownership Verification</h3>
+                <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#ede8dc] text-[#141b2d]">
                   {candidate.id}
                 </span>
               </div>
-              <p className="text-xs text-slate-500">
-                Non-leading interactive questioning with privacy-preserving semantic evaluation (Max 3 rounds)
+              <p className="text-xs text-[#5c687e]">
+                Non-leading interactive questioning with privacy-preserving semantic evaluation
               </p>
             </div>
           </div>
           <button
             id="close-verification-modal-btn"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 transition-colors"
+            className="p-1.5 rounded-lg text-[#5c687e] hover:text-[#141b2d] hover:bg-[#ede8dc] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

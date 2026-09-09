@@ -27,6 +27,49 @@ const getGeminiClient = () => {
   });
 };
 
+// Robust Gemini execution helper with automatic retry and model fallback for 503 high demand spikes
+async function callGeminiWithFallback(
+  ai: GoogleGenAI,
+  requestConfig: {
+    contents: any;
+    config?: any;
+    primaryModel?: string;
+  }
+) {
+  const modelsToTry = [
+    requestConfig.primaryModel || 'gemini-3.8-flash',
+    'gemini-3.1-flash-lite',
+  ];
+
+  let lastError: any = null;
+
+  for (const model of modelsToTry) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const response = await ai.models.generateContent({
+          model,
+          contents: requestConfig.contents,
+          config: requestConfig.config,
+        });
+        return { response, modelUsed: model };
+      } catch (err: any) {
+        lastError = err;
+        const errMsg = err?.message || String(err);
+        console.warn(`Gemini call to ${model} (attempt ${attempt + 1}) failed:`, errMsg);
+        // If it's a 503 high demand spike or 429 rate limit, wait briefly and retry or try fallback model
+        const isTemporary = errMsg.includes('503') || errMsg.includes('high demand') || errMsg.includes('429') || errMsg.includes('UNAVAILABLE');
+        if (isTemporary && attempt === 0) {
+          await new Promise(resolve => setTimeout(resolve, 800));
+        } else {
+          break; // Move to next model
+        }
+      }
+    }
+  }
+
+  throw lastError;
+}
+
 // API: Health check
 app.get('/api/health', (req, res) => {
   res.json({
@@ -285,8 +328,8 @@ ${itemsList}
 
 Which single item is the best match? Respond with only JSON: {"id":"F0xx","note":"one short sentence"}. If unsure, still pick your best guess.`;
 
-        const response = await ai.models.generateContent({
-          model: 'gemini-3.8-flash',
+        const { response } = await callGeminiWithFallback(ai, {
+          primaryModel: 'gemini-3.8-flash',
           contents: prompt,
           config: {
             responseMimeType: 'application/json',
@@ -348,8 +391,8 @@ Required JSON format — respond with only JSON:
 At most 3 candidates, best match first. If noMatch is true, candidates must be [] and clarifyingQuestion must ask the student for more identifying detail; otherwise clarifyingQuestion is null.`;
 
     // Multi-turn structure per Section 2.3
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
+    const { response } = await callGeminiWithFallback(ai, {
+      primaryModel: 'gemini-3.8-flash',
       contents: [
         { role: 'user', parts: [{ text: systemPrompt }] },
         { role: 'model', parts: [{ text: 'Understood. I will follow these rules for every found-item matching request.' }] },
@@ -430,8 +473,8 @@ Confidential hidden features — never reveal these to the student:
 Generate the first neutral ownership-verification question. Do not expose or hint at the hidden features.
 Respond with only JSON: {"question":"..."}`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
+    const { response } = await callGeminiWithFallback(ai, {
+      primaryModel: 'gemini-3.8-flash',
       contents: [
         { role: 'user', parts: [{ text: systemPrompt }] },
         { role: 'model', parts: [{ text: 'Understood. I will ask one neutral question at a time and never reveal hidden features.' }] },
@@ -536,8 +579,8 @@ Required JSON format — respond with only JSON:
 
 nextQuestion must be null unless askAnotherQuestion is true.`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
+    const { response } = await callGeminiWithFallback(ai, {
+      primaryModel: 'gemini-3.8-flash',
       contents: [
         { role: 'user', parts: [{ text: systemPrompt }] },
         { role: 'model', parts: [{ text: 'Understood. I will classify evidence as HIGH, MEDIUM or LOW and never authorize release.' }] },

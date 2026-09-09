@@ -1,5 +1,4 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
 
 interface HeaderProps {
   sharedUrl?: string;
@@ -8,26 +7,21 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = () => {
   return (
-    <header id="app-header" className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
-        {/* Logo & Title */}
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-bold text-lg shadow-sm">
-            <Sparkles className="w-5 h-5 text-amber-300" />
+    <header id="app-header" className="bg-[#f8f6f0] border-b border-[#ece7dc] pt-6 pb-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        {/* Logo & Brand */}
+        <div className="flex items-center space-x-2.5">
+          <div className="w-8 h-8 rounded-lg bg-[#d94826] text-white flex items-center justify-center font-bold text-base shadow-xs">
+            F
           </div>
-          <div>
-            <div className="flex items-center space-x-2">
-              <h1 className="text-xl font-bold tracking-tight text-slate-900">
-                NTU FindAI
-              </h1>
-              <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                GenAI &amp; Agentic AI
-              </span>
-            </div>
-            <p className="text-xs text-slate-500 font-medium">
-              University Lost-and-Found Matching &amp; Private Ownership Verification System
-            </p>
-          </div>
+          <span className="text-lg font-bold text-[#141b2d] tracking-tight font-sans">
+            NTU FindAI
+          </span>
+        </div>
+
+        {/* Right Status Pill */}
+        <div className="text-xs font-medium text-[#5c687e] bg-[#ede8dc] border border-[#ded7c8] px-3.5 py-1 rounded-full">
+          Student prototype &middot; human-verified &middot; build 1.1
         </div>
       </div>
     </header>

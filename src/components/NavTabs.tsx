@@ -45,47 +45,29 @@ export const NavTabs: React.FC<NavTabsProps> = ({ activeTab, onChangeTab }) => {
   ];
 
   return (
-    <nav id="main-navigation-tabs" className="bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex space-x-1 sm:space-x-4 overflow-x-auto no-scrollbar py-2">
-          {tabs.map(tab => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.key;
-            return (
-              <button
-                key={tab.key}
-                id={`tab-button-${tab.key}`}
-                onClick={() => onChangeTab(tab.key)}
-                className={`flex items-center space-x-2.5 px-3.5 py-2.5 rounded-xl text-left whitespace-nowrap transition-all text-xs font-semibold shrink-0 ${
-                  isActive
-                    ? 'bg-blue-50/80 text-blue-700 border border-blue-200 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
-                }`}
-              >
-                <div
-                  className={`p-1.5 rounded-lg ${
-                    isActive ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'
-                  }`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                </div>
-                <div>
-                  <div className="flex items-center space-x-1.5">
-                    <span>{tab.label}</span>
-                    {tab.badge && (
-                      <span className={`px-1.5 py-0.2 rounded text-[10px] uppercase font-bold ${
-                        isActive ? 'bg-blue-200/70 text-blue-800' : 'bg-slate-200/80 text-slate-600'
-                      }`}>
-                        {tab.badge}
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-[10px] text-slate-600 font-normal">{tab.sublabel}</div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
+    <nav id="main-navigation-tabs" className="py-2">
+      <div className="flex flex-wrap items-center gap-2">
+        {tabs.map(tab => {
+          const isActive = activeTab === tab.key;
+          return (
+            <button
+              key={tab.key}
+              id={`tab-button-${tab.key}`}
+              onClick={() => onChangeTab(tab.key)}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                isActive
+                  ? 'bg-[#141b2d] text-white shadow-xs'
+                  : 'bg-white text-[#4b5569] hover:text-[#141b2d] hover:bg-[#ede8dc]/80 border border-[#e5dfd2]'
+              }`}
+            >
+              {tab.key === 'prototype' && 'Live prototype'}
+              {tab.key === 'architecture' && 'Architecture'}
+              {tab.key === 'evaluation' && 'Evaluation'}
+              {tab.key === 'failures' && 'Failure Analysis'}
+              {tab.key === 'dataset' && 'Dataset (30 items)'}
+            </button>
+          );
+        })}
       </div>
     </nav>
   );
