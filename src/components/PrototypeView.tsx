@@ -136,7 +136,7 @@ export const PrototypeView: React.FC = () => {
             <span className="text-[11px] text-slate-500">Click to populate &amp; execute instantly</span>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {TEST_CASES.slice(0, 7).map(tc => (
+            {TEST_CASES.slice(0, 3).map(tc => (
               <button
                 key={tc.no}
                 onClick={() => loadPreset(tc.input)}

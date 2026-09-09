@@ -43,25 +43,14 @@ export default function App() {
         {activeTab === 'dataset' && <DatasetView />}
       </main>
 
-      {/* Footer with Assignment Deliverable Reference */}
-      <footer className="bg-white border-t border-slate-200 mt-auto py-6 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="space-y-1 text-center md:text-left">
-            <div className="font-bold text-slate-800">
-              Generative AI &amp; Agentic AI — Group Assignment (Part 1)
-            </div>
-            <div>
-              Project: <strong>NTU FindAI</strong> (Design, prototype, test, and improve a GenAI application)
-            </div>
+      {/* Footer */}
+      <footer className="bg-white border-t border-slate-200 mt-auto py-4 text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+          <div className="font-medium text-slate-700">
+            NTU FindAI — University Lost-and-Found Matching &amp; Verification System
           </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-3">
-            <span className="bg-slate-100 px-2.5 py-1 rounded text-[11px] font-mono border border-slate-200 text-slate-700">
-              Submission: 13 September 2026, 11:59pm
-            </span>
-            <span className="text-blue-600 font-medium hover:underline cursor-pointer" onClick={() => setActiveTab('prototype')}>
-              Deliverable #2 Public Web App
-            </span>
+          <div className="text-slate-400">
+            NTU Campus Community
           </div>
         </div>
       </footer>
